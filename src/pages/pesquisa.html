@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pesquisa</title>
+</head>
+
+<body>
+	<!--Importando Script Jquery-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+	<!--Formulário-->
+	<form>
+        <label for="name"></label>
+        <input id="name" type="text" required/>            
+        <button type="button" class="btn btn-outline-dark" onClick="/pesquisa">Pesquisar Personagem</button>
+        <label for="name">Nome digitado:</label>
+        <input id="name" type="text" required/> 
+		<label for="birthday">Aniversário:</label>
+		<input id="birthday" type="text" required/>
+		<label for="status ">Status:</label>
+		<input id="status" type="text" />
+	</form>
+	
+	<script type="text/javascript">
+		$("#name").blur(function(){
+			$.ajax({
+				url: 'https://www.breakingbadapi.com/api/characters',
+				dataType: 'json',
+				success: function(resposta){
+					console.log(resposta)
+					$("#name").val(resposta.name);
+					$("#birthday").val(resposta.birthday);
+					$("#status").val(resposta.status);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
